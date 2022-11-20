@@ -62,17 +62,13 @@ The resulting script is automatically _aligned_: all sources (`source` or `.`) a
 1. Inline script `hello.sh` and save it as `world.sh`
 
    ```sh
-   ./inline.sh \
-     --in-file hello.sh \ # Input file
-   --out-file world.sh # Output file
+   ./inline.sh --in-file hello.sh --out-file world.sh
    ```
 
 1. Inline script `hello_world.sh` and overwrite it
 
    ```sh
-   ./inline.sh \
-     --in-file hello_world.sh \ # Input file
-   --overwrite # Overwrite flag
+   ./inline.sh --in-file hello_world.sh --overwrite
    ```
 
 ## Options
