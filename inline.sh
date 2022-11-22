@@ -368,6 +368,8 @@ parse_args() {
         ;;
     esac
   done
+  
+  [ "$OVERWRITE" = false ] || OUT_FILE=$IN_FILE
 }
 
 # Verify system
@@ -375,7 +377,6 @@ verify_system() {
   assert_cmd grep
   assert_cmd sed
 
-  [ "$OVERWRITE" = false ] || OUT_FILE=$IN_FILE
   [ -f "$IN_FILE" ] || FATAL "Input file '$IN_FILE' does not exists"
   if [ "$OVERWRITE" = false ] && [ -f "$OUT_FILE" ]; then FATAL "Output file '$OUT_FILE' already exists"; fi
 }
