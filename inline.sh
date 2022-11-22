@@ -203,7 +203,9 @@ inline_sources() {
   _file=$1
   _file_dir=$(dirname "$_file")
   _regex='^([[:space:]]*)(source|\.)[[:space:]]+(.+)'
+  _regex_inline_skip='^[[:space:]]*#[[:space:]]*inline[[:space:]]+skip.*'
   _regex_shellcheck='^[[:space:]]*#[[:space:]]*shellcheck[[:space:]]+source=(.+)'
+  _inline_skip=false
   _source_file_shellcheck=
 
   [ -f "$_file" ] || FATAL "File '$_file' does not exists"
@@ -216,7 +218,14 @@ inline_sources() {
   while IFS='' read -r _line; do
     DEBUG "Analyzing line '$_line'"
 
-    if printf "%s\n" "$_line" | grep -q -E "$_regex_shellcheck"; then
+    if printf "%s\n" "$_line" | grep -q -E "$_regex_inline_skip"; then
+      # # inline skip
+      _inline_skip=true
+      DEBUG "Inline skip '$_line'"
+
+      # Print line
+      printf '%s\n' "$_line"
+    elif printf "%s\n" "$_line" | grep -q -E "$_regex_shellcheck"; then
       # # shellcheck source=...
       DEBUG "ShellCheck source '$_line'"
 
@@ -232,6 +241,19 @@ inline_sources() {
       # Source
       _source_file=$(printf "%s\n" "$_line" | sed -n -r "s/$_regex/\3/p" | sed -e 's/^"//' -e 's/"$//')
 
+      # Check skip
+      [ "$_inline_skip" = false ] || {
+        # Skip
+        WARN "Skipping source '$_line'"
+        # Reset inline skip
+        _inline_skip=false
+        # Reset shellcheck
+        _source_file_shellcheck=
+        # Print line
+        printf '%s\n' "$_line"
+        continue
+      }
+
       # Resolve source path
       _path=
       if printf "%s\n" "$_source_file" | grep -q -E -v '.*\/.*'; then
@@ -242,7 +264,7 @@ inline_sources() {
       fi
       if [ -z "$_path" ]; then
         # Resolve links, relative paths, ~, quotes, and escapes
-        DEBUG "Path is undefined, searching continues"
+        DEBUG "Path is undefined, continue searching"
 
         _path=$_source_file
         if printf "%s\n" "$_path" | grep -q -E -v '^\/|^\$'; then
@@ -289,6 +311,8 @@ inline_sources() {
       # Inline source and remove shebang
       inline_sources "$_path" | sed '/^#!.*/d'
     else
+      # Reset inline skip
+      _inline_skip=false
       # Reset shellcheck
       _source_file_shellcheck=
       # Print line
@@ -368,7 +392,7 @@ parse_args() {
         ;;
     esac
   done
-  
+
   [ "$OVERWRITE" = false ] || OUT_FILE=$IN_FILE
 }
 

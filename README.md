@@ -20,13 +20,29 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 - Sourcing from `$PATH`
 
 - Sourcing from [ShellCheck](https://github.com/koalaman/shellcheck) source: `# shellcheck source=path/to/script.sh` \
-  :warning: Available only if `source` or `.` is invalid
+
+  > **Warning**: Only if `source` or `.` is invalid
+
+  ```sh
+  # shellcheck source=path/to/script.sh
+  . "$DIR/path/to/script.sh"
+  ```
 
 - Sources in sources
 
 - Recursion detection
 
 - Shebang (`#!`) removal in sources
+
+- Skip source: `# inline skip` \
+
+  > **Note**: that it also works with [ShellCheck](https://github.com/koalaman/shellcheck)
+
+  ```sh
+  # inline skip
+  # shellcheck source=path/to/script.sh
+  . path/to/script.sh
+  ```
 
 - Configurable \
   See [Options](#options)
