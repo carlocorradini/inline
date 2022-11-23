@@ -19,7 +19,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 
 - Sourcing from `$PATH`
 
-- Sourcing from [ShellCheck](https://github.com/koalaman/shellcheck) source: `# shellcheck source=path/to/script.sh` \
+- Sourcing from [ShellCheck](https://github.com/koalaman/shellcheck) source: `# shellcheck source=path/to/script.sh`
 
   > **Warning**: Only if `source` or `.` is invalid
 
@@ -34,7 +34,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 
 - Shebang (`#!`) removal in sources
 
-- Skip source: `# inline skip` \
+- Skip source: `# inline skip`
 
   > **Note**: that it also works with [ShellCheck](https://github.com/koalaman/shellcheck)
 
@@ -44,7 +44,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
   . path/to/script.sh
   ```
 
-- Configurable \
+- Configurable
   See [Options](#options)
 
 ## Download
