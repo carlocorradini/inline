@@ -36,7 +36,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 
 - Skip source: `# inline skip`
 
-  > **Note**: that it also works with [ShellCheck](https://github.com/koalaman/shellcheck)
+  > **Note**: Works with [ShellCheck](https://github.com/koalaman/shellcheck) as well
 
   ```sh
   # inline skip
