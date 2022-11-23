@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 -->
 
-# [Inline](./inline.sh) sources
+# [Inline](./inline.sh) script sources
 
 [![ci](https://github.com/carlocorradini/inline/actions/workflows/ci.yml/badge.svg)](https://github.com/carlocorradini/inline/actions/workflows/ci.yml)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
