@@ -21,7 +21,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 
 - Sourcing from [ShellCheck](https://github.com/koalaman/shellcheck) source: `# shellcheck source=path/to/script.sh`
 
-  > **Warning**: Only if `source` or `.` is invalid
+  > **Warning**: Available only if `source` or `.` is invalid
 
   ```sh
   # shellcheck source=path/to/script.sh
