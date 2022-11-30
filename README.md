@@ -49,16 +49,8 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 
 ## Download
 
-### `curl`
-
 ```sh
-https://raw.githubusercontent.com/carlocorradini/inline/main/inline.sh
-```
-
-### `wget`
-
-```sh
-https://raw.githubusercontent.com/carlocorradini/inline/main/inline.sh
+wget https://raw.githubusercontent.com/carlocorradini/inline/main/inline.sh
 ```
 
 ## Usage
