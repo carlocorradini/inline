@@ -52,7 +52,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
 ### `curl`
 
 ```sh
-https://raw.githubusercontent.com/carlocorradini/inline/main/inline.sh -o inline.sh
+https://raw.githubusercontent.com/carlocorradini/inline/main/inline.sh
 ```
 
 ### `wget`
