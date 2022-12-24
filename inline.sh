@@ -273,7 +273,7 @@ inline_sources() {
         fi
 
         # Canonicalize
-        _path=$(eval readlink -m "$_path")
+        _path=$(eval readlink -f "$_path" || :)
         DEBUG "Path candidate '$_path'"
 
         if [ ! -f "$_path" ] && [ -n "$_source_file_shellcheck" ]; then
@@ -287,7 +287,7 @@ inline_sources() {
           fi
 
           # Canonicalize
-          _path=$(readlink -m "$_path")
+          _path=$(readlink -f "$_path" || :)
           DEBUG "Path candidate '$_path'"
           # Reset shellcheck
           _source_file_shellcheck=
