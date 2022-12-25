@@ -44,7 +44,7 @@ Inspired by [@joehillen](https://github.com/joehillen) [GitHub Gist](https://gis
   . path/to/script.sh
   ```
 
-- Configurable
+- Configurable \
   See [Options](#options)
 
 ## Download
@@ -81,14 +81,14 @@ The resulting script is automatically _aligned_: all sources (`source` or `.`) a
 
 ## Options
 
-| **Name**              | **Description**            | **Default** | **Values**                                                                                                |
-| --------------------- | -------------------------- | ----------- | --------------------------------------------------------------------------------------------------------- |
-| `--disable-color`     | Disable color              | `false`     |
+| **Name**              | **Description**            | **Default**                                 | **Values**                                                                                                |
+| --------------------- | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `--disable-color`     | Disable color              | `false`                                     |
 | `--help`              | Show help message and exit |
-| `--in-file <FILE>`    | Input file                 | `script.sh` | Any valid file                                                                                            |
-| `--log-level <LEVEL>` | Logger level               | `info`      | `fatal` Fatal level <br/> `warn` Warning level <br/> `info` Informational level <br/> `debug` Debug level |
-| `--out-file <FILE>`   | Output file                | `output.sh` | Any valid file                                                                                            |
-| `--overwrite`         | Overwrite input file       | `false`     |
+| `--in-file <FILE>`    | Input file                 |                                             | Any valid file                                                                                            |
+| `--log-level <LEVEL>` | Logger level               | `info`                                      | `fatal` Fatal level <br/> `warn` Warning level <br/> `info` Informational level <br/> `debug` Debug level |
+| `--out-file <FILE>`   | Output file                | `[IN_FILE_NAME].inlined[IN_FILE_EXTENSION]` | Any valid file                                                                                            |
+| `--overwrite`         | Overwrite input file       | `false`                                     |
 
 ## Contributing
 
