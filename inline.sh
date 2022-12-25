@@ -129,7 +129,7 @@ DEBUG() { _log_print_message "$LOG_LEVEL_DEBUG" "$1" >&2; }
 # Show help message
 show_help() {
   cat << EOF
-Usage: $(basename "$0") [--disable-color] [--help] [--in-file <FILE>] [--log-level <LEVEL>] [--out-file <FILE>] [--overwrite]
+Usage: $(basename "$0") --in-file <FILE> [--disable-color] [--help] [--log-level <LEVEL>] [--out-file <FILE>] [--overwrite]
 
 reCluster bundle script.
 
@@ -139,7 +139,6 @@ Options:
   --help               Show this help message and exit
 
   --in-file <FILE>     Input file
-                       Default: $IN_FILE
                        Values:
                          Any valid file
 
@@ -152,7 +151,7 @@ Options:
                          debug    Debug level
 
   --out-file <FILE>    Output file
-                       Default: $OUT_FILE
+                       Default: [IN_FILE_NAME].inlined[IN_FILE_EXTENSION]
                        Values:
                          Any valid file
 
@@ -393,7 +392,21 @@ parse_args() {
     esac
   done
 
-  [ "$OVERWRITE" = false ] || OUT_FILE=$IN_FILE
+  # Determine output file
+  if [ "$OVERWRITE" = true ]; then
+    # Input file
+    OUT_FILE=$IN_FILE
+  elif [ -n "$IN_FILE" ] && [ -z "$OUT_FILE" ]; then
+    # Input file 'inlined'
+    _in_file_basename=$(basename -- "$IN_FILE")
+    _in_file_name="${_in_file_basename%.*}"
+    _in_file_extension=
+    case $_in_file_basename in
+      *.*) _in_file_extension=".${_in_file_basename##*.}" ;;
+    esac
+
+    OUT_FILE="$_in_file_name.inlined$_in_file_extension"
+  fi
 }
 
 # Verify system
@@ -401,6 +414,7 @@ verify_system() {
   assert_cmd grep
   assert_cmd sed
 
+  [ -n "$IN_FILE" ] || FATAL "Input file required"
   [ -f "$IN_FILE" ] || FATAL "Input file '$IN_FILE' does not exists"
   if [ "$OVERWRITE" = false ] && [ -f "$OUT_FILE" ]; then FATAL "Output file '$OUT_FILE' already exists"; fi
 }
@@ -418,13 +432,13 @@ inline() {
 # CONFIGURATION
 # ================
 # Input file
-IN_FILE="script.sh"
+IN_FILE=
 # Log level
 LOG_LEVEL=$LOG_LEVEL_INFO
 # Log color flag
 LOG_COLOR_ENABLE=true
 # Output file
-OUT_FILE="output.sh"
+OUT_FILE=
 # Overwrite flag
 OVERWRITE=false
 
