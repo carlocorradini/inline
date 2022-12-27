@@ -42,6 +42,8 @@ LOG_LEVEL_WARN=200
 LOG_LEVEL_INFO=300
 # Debug log level
 LOG_LEVEL_DEBUG=400
+# Silent log level
+LOG_LEVEL_SILENT=500
 # Log level
 LOG_LEVEL=$LOG_LEVEL_INFO
 # Log color flag
@@ -58,6 +60,7 @@ to_log_level_name() {
     "$LOG_LEVEL_WARN") _log_level_name=warn ;;
     "$LOG_LEVEL_INFO") _log_level_name=info ;;
     "$LOG_LEVEL_DEBUG") _log_level_name=debug ;;
+    "$LOG_LEVEL_SILENT") _log_level_name=silent ;;
     *) FATAL "Unknown log level '$_log_level'" ;;
   esac
 
@@ -76,7 +79,9 @@ _log_print_message() {
   _log_suffix="\033[0m"
 
   # Check log level
-  [ "$_log_level" -le "$LOG_LEVEL" ] || return 0
+  if [ "$LOG_LEVEL" -eq "$LOG_LEVEL_SILENT" ] || [ "$_log_level" -le "$LOG_LEVEL" ]; then
+    return 0
+  fi
 
   case $_log_level in
     "$LOG_LEVEL_FATAL")
@@ -149,6 +154,7 @@ Options:
                          warn     Warning level
                          info     Informational level
                          debug    Debug level
+                         silent   Silent level
 
   --out-file <FILE>    Output file
                        Default: [IN_FILE_NAME].inlined[IN_FILE_EXTENSION]
@@ -361,6 +367,7 @@ parse_args() {
           warn) LOG_LEVEL=$LOG_LEVEL_WARN ;;
           info) LOG_LEVEL=$LOG_LEVEL_INFO ;;
           debug) LOG_LEVEL=$LOG_LEVEL_DEBUG ;;
+          silent) LOG_LEVEL=$LOG_LEVEL_SILENT ;;
           *) FATAL "Value '$2' of argument '$1' is invalid" ;;
         esac
         shift
