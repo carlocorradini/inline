@@ -81,13 +81,13 @@ The resulting script is automatically _aligned_: all sources (`source` or `.`) a
 
 ## Options
 
-| **Name**              | **Description**            | **Default**                                 | **Values**                                                                                                |
-| --------------------- | -------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Name**              | **Description**            | **Default**                                 | **Values**                                                                                                                            |
+| --------------------- | -------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `--disable-color`     | Disable color              | `false`                                     |
 | `--help`              | Show help message and exit |
-| `--in-file <FILE>`    | Input file                 |                                             | Any valid file                                                                                            |
-| `--log-level <LEVEL>` | Logger level               | `info`                                      | `fatal` Fatal level <br/> `warn` Warning level <br/> `info` Informational level <br/> `debug` Debug level |
-| `--out-file <FILE>`   | Output file                | `[IN_FILE_NAME].inlined[IN_FILE_EXTENSION]` | Any valid file                                                                                            |
+| `--in-file <FILE>`    | Input file                 |                                             | Any valid file                                                                                                                        |
+| `--log-level <LEVEL>` | Logger level               | `info`                                      | `fatal` Fatal level <br/> `warn` Warning level <br/> `info` Informational level <br/> `debug` Debug level <br/> `silent` Silent level |
+| `--out-file <FILE>`   | Output file                | `[IN_FILE_NAME].inlined[IN_FILE_EXTENSION]` | Any valid file                                                                                                                        |
 | `--overwrite`         | Overwrite input file       | `false`                                     |
 
 ## Contributing
