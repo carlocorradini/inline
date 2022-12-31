@@ -79,7 +79,7 @@ _log_print_message() {
   _log_suffix="\033[0m"
 
   # Check log level
-  if [ "$LOG_LEVEL" -eq "$LOG_LEVEL_SILENT" ] || [ "$_log_level" -le "$LOG_LEVEL" ]; then
+  if [ "$LOG_LEVEL" -eq "$LOG_LEVEL_SILENT" ] || [ "$_log_level" -gt "$LOG_LEVEL" ]; then
     return 0
   fi
 
