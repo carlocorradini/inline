@@ -62,7 +62,7 @@ wget https://raw.githubusercontent.com/carlocorradini/inline/main/inline.sh
 > **Note**: Type `--help` for more information
 
 Pass the script to be aligned with `--in-file path/to/script.sh` \
-It creates a script called `output.sh` \
+It creates a script called `script.aligned.sh` \
 The resulting script is automatically _aligned_: all sources (`source` or `.`) are directly included.
 
 ### Examples
