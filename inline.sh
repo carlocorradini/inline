@@ -31,102 +31,10 @@ set -o noglob
 # PID shell
 SELF_PID=$$
 
-# ================
-# LOGGER
-# ================
-# Fatal log level. Cause exit failure
-LOG_LEVEL_FATAL=100
-# Warning log level
-LOG_LEVEL_WARN=200
-# Informational log level
-LOG_LEVEL_INFO=300
-# Debug log level
-LOG_LEVEL_DEBUG=400
-# Silent log level
-LOG_LEVEL_SILENT=500
-# Log level
-LOG_LEVEL=$LOG_LEVEL_INFO
-# Log color flag
-LOG_COLOR_ENABLE=true
-
-# Convert log level to equivalent name
-# @param $1 Log level
-to_log_level_name() {
-  _log_level=${1:-LOG_LEVEL}
-  _log_level_name=
-
-  case $_log_level in
-    "$LOG_LEVEL_FATAL") _log_level_name=fatal ;;
-    "$LOG_LEVEL_WARN") _log_level_name=warn ;;
-    "$LOG_LEVEL_INFO") _log_level_name=info ;;
-    "$LOG_LEVEL_DEBUG") _log_level_name=debug ;;
-    "$LOG_LEVEL_SILENT") _log_level_name=silent ;;
-    *) FATAL "Unknown log level '$_log_level'" ;;
-  esac
-
-  printf "%s\n" "$_log_level_name"
-}
-
-# Print log message
-# @param $1 Log level
-# @param $2 Message
-_log_print_message() {
-  _log_level=${1:-LOG_LEVEL_FATAL}
-  shift
-  _log_level_name=
-  _log_message=${*:-}
-  _log_prefix=
-  _log_suffix="\033[0m"
-
-  # Check log level
-  if [ "$LOG_LEVEL" -eq "$LOG_LEVEL_SILENT" ] || [ "$_log_level" -gt "$LOG_LEVEL" ]; then
-    return 0
-  fi
-
-  case $_log_level in
-    "$LOG_LEVEL_FATAL")
-      _log_level_name=FATAL
-      _log_prefix="\033[41;37m"
-      ;;
-    "$LOG_LEVEL_WARN")
-      _log_level_name=WARN
-      _log_prefix="\033[1;33m"
-      ;;
-    "$LOG_LEVEL_INFO")
-      _log_level_name=INFO
-      _log_prefix="\033[37m"
-      ;;
-    "$LOG_LEVEL_DEBUG")
-      _log_level_name=DEBUG
-      _log_prefix="\033[1;34m"
-      ;;
-  esac
-
-  # Check color flag
-  if [ "$LOG_COLOR_ENABLE" = false ]; then
-    _log_prefix=
-    _log_suffix=
-  fi
-
-  # Log
-  printf '%b[%-5s] %b%b\n' "$_log_prefix" "$_log_level_name" "$_log_message" "$_log_suffix"
-}
-
-# Fatal log message
-# @param $1 Message
-FATAL() {
-  _log_print_message "$LOG_LEVEL_FATAL" "$1" >&2
-  exit 1
-}
-# Warning log message
-# @param $1 Message
-WARN() { _log_print_message "$LOG_LEVEL_WARN" "$1" >&2; }
-# Informational log message
-# @param $1 Message
-INFO() { _log_print_message "$LOG_LEVEL_INFO" "$1" >&2; }
-# Debug log message
-# @param $1 Message
-DEBUG() { _log_print_message "$LOG_LEVEL_DEBUG" "$1" >&2; }
+# pac-rirl: source the separated and revised logging script
+# shellcheck disable=SC3046
+# shellcheck disable=SC1091
+source "inline-logging.sh"
 
 # ================
 # FUNCTIONS
@@ -443,6 +351,7 @@ IN_FILE=
 # Log level
 LOG_LEVEL=$LOG_LEVEL_INFO
 # Log color flag
+# shellcheck disable=SC2034
 LOG_COLOR_ENABLE=true
 # Output file
 OUT_FILE=
