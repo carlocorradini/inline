@@ -34,7 +34,7 @@ SELF_PID=$$
 # pac-rirl: source the separated and revised logging script
 # shellcheck disable=SC3046
 # shellcheck disable=SC1091
-source "inline-logging.sh"
+. "inline-logging.sh"
 
 # ================
 # FUNCTIONS
