@@ -273,7 +273,7 @@ inline_sources() {
 
         _path=$_source_file
         if printf "%s\n" "$_path" | grep -q -E -v '^\/|^\$'; then
-          # Path does not start with '/' or '$' symbol, preprend directory
+          # Path does not start with '/' or '$' symbol, prepend directory
           _path="$_file_dir/$_path"
         fi
 
@@ -287,7 +287,7 @@ inline_sources() {
 
           _path=$_source_file_shellcheck
           if printf "%s\n" "$_path" | grep -q -E -v '^\/'; then
-            # Path does not start with '/' symbol, preprend directory
+            # Path does not start with '/' symbol, prepend directory
             _path="$_file_dir/$_path"
           fi
 
