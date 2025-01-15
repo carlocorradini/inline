@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # MIT License
 #
-# Copyright (c) 2022-2022 Carlo Corradini
+# Copyright (c) 2022-2025 Carlo Corradini
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
